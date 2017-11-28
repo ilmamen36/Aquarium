@@ -48,8 +48,7 @@
             this.действияToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1255, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(941, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -59,13 +58,13 @@
             this.включитьАквариумToolStripMenuItem,
             this.добавитьРыбуToolStripMenuItem});
             this.действияToolStripMenuItem.Name = "действияToolStripMenuItem";
-            this.действияToolStripMenuItem.Size = new System.Drawing.Size(86, 24);
+            this.действияToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.действияToolStripMenuItem.Text = "Действия";
             // 
             // включитьАквариумToolStripMenuItem
             // 
             this.включитьАквариумToolStripMenuItem.Name = "включитьАквариумToolStripMenuItem";
-            this.включитьАквариумToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.включитьАквариумToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.включитьАквариумToolStripMenuItem.Text = "Включить аквариум";
             this.включитьАквариумToolStripMenuItem.Click += new System.EventHandler(this.включитьАквариумToolStripMenuItem_Click);
             // 
@@ -76,7 +75,7 @@
             this.улиткуToolStripMenuItem});
             this.добавитьРыбуToolStripMenuItem.Enabled = false;
             this.добавитьРыбуToolStripMenuItem.Name = "добавитьРыбуToolStripMenuItem";
-            this.добавитьРыбуToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.добавитьРыбуToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.добавитьРыбуToolStripMenuItem.Text = "Добавить";
             // 
             // рыбуToolStripMenuItem
@@ -84,15 +83,16 @@
             this.рыбуToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("рыбуToolStripMenuItem.Image")));
             this.рыбуToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.рыбуToolStripMenuItem.Name = "рыбуToolStripMenuItem";
-            this.рыбуToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
+            this.рыбуToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
             this.рыбуToolStripMenuItem.Text = "Рыбу";
             this.рыбуToolStripMenuItem.Click += new System.EventHandler(this.рыбуToolStripMenuItem_Click);
             // 
             // улиткуToolStripMenuItem
             // 
             this.улиткуToolStripMenuItem.Name = "улиткуToolStripMenuItem";
-            this.улиткуToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
+            this.улиткуToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
             this.улиткуToolStripMenuItem.Text = "Улитку";
+            this.улиткуToolStripMenuItem.Click += new System.EventHandler(this.улиткуToolStripMenuItem_Click);
             // 
             // timer1
             // 
@@ -106,13 +106,13 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1255, 591);
+            this.ClientSize = new System.Drawing.Size(941, 480);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

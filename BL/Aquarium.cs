@@ -11,9 +11,9 @@ namespace BL
         public ListOfAquaPeople AllFish { get; private set; } = new ListOfAquaPeople();
         public List<Food> Ohapka { get; private set; } = new List<Food>();
 
-        public void Add(LiveInAqua fish)
+        public void Add(LiveInAqua obj)
         {
-            AllFish.Add(fish);
+            AllFish.Add(obj);
         }
 
         public void CreateFood(int x, int y)

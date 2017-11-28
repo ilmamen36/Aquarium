@@ -20,42 +20,72 @@ namespace Aquarium2
         Aquarium world;
         Drawing draw;
 
-        bool fishFlag,foodFlag;
+        bool fishFlag, foodFlag, snailFlag;
         Graphics g;
         static Bitmap bmp;
         int x, y;
-        int bigFISH = 0;
+        int bigFishCount = 0;
+        int snailCount = 0;
 
 
         private void рыбуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fishFlag = true;
-            bigFISH++;
-            рыбуToolStripMenuItem.Text = "Рыбу " + bigFISH.ToString() + "/3";
-            if (bigFISH == 3)
+            bigFishCount++;
+            рыбуToolStripMenuItem.Text = "Рыбу " + bigFishCount.ToString() + "/3";
+            if (bigFishCount == 3)
             {
                 рыбуToolStripMenuItem.Text = "Больше нельзя ;(";
                 рыбуToolStripMenuItem.Enabled = false;
             }
-            if (bigFISH == 1)
+            if (bigFishCount == 1)
                 timer2.Enabled = true;
         }
         private void Form1_Click(object sender, EventArgs e)
         {
             x = MousePosition.X;
             y = MousePosition.Y;
-            if (!fishFlag && foodFlag && y <= 630)
+            if (y <= 630)
             {
-                world.CreateFood(x, y);
+                if (!fishFlag && foodFlag)
+                {
+                    world.CreateFood(x, y);
+                }
+                if (fishFlag)
+                {
+                    g.DrawImage(Image.FromFile("background.png"), 0, 0);
+                    world.Add(new FishAdult(g, x, y));
+                    BackgroundImage = bmp;
+                    fishFlag = false;
+                }
             }
-            if (fishFlag)
-            {   
-                g.DrawImage(Image.FromFile("background.png"), 0, 0);
-                world.Add(new FishAdult(g, MousePosition.X, MousePosition.Y));
-                BackgroundImage = bmp;
-                fishFlag = false;
+            else
+            {
+                if (snailFlag)
+                {
+                    g.DrawImage(Image.FromFile("background.png"), 0, 0);
+                    world.Add(new Snail(g, x, y));
+                    BackgroundImage = bmp;
+                    snailFlag = false;
+                }
+                else
+                    snailCount--;
             }
-            
+        }
+
+        private void улиткуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            snailFlag = true;
+            snailCount++;
+            улиткуToolStripMenuItem.Text = "Улитку " + snailCount.ToString() + "/4";
+            if (snailCount == 3)
+            {
+                улиткуToolStripMenuItem.Text = "Больше нельзя ;(";
+                улиткуToolStripMenuItem.Enabled = false;
+            }
+            if (snailCount == 1)
+                timer2.Enabled = true;
         }
 
         private void включитьАквариумToolStripMenuItem_Click(object sender, EventArgs e)
