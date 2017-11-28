@@ -30,11 +30,8 @@ namespace BL
 
         public void FoodExist()
         {
-            if (AllFish.GetSubscribers().Count() == 0)
-            {
                 AllFish.IsHungry();
                 AllFish.NotifyObserversFood(Ohapka);
-            }
         }
     }
 }

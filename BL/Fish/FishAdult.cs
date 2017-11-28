@@ -20,7 +20,7 @@ namespace BL
             Height = 95;
             this.g = g;
             TrgX = rnd.Next(80, 1450);
-            TrgY = rnd.Next(40, 580);
+            TrgY = rnd.Next(40, 650);
             lifeRec = new Rectangle(x, y + 100, Width, 10);
         }
 

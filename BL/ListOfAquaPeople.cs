@@ -37,9 +37,9 @@ namespace BL
                     else
                     {
                         if (PointNewOrNo(residents.ElementAt(i).X, residents.ElementAt(i).Y, residents.ElementAt(i).TrgX, residents.ElementAt(i).TrgY))
-                            {
-                                residents.ElementAt(i).SetPoint();                                
-                            }
+                        {
+                            residents.ElementAt(i).SetPoint();
+                        }
                         NotifyObserversFood(Ohapka);
                         residents.ElementAt(i).Move();
                     }
@@ -84,16 +84,20 @@ namespace BL
             }
         }
 
-        public void RemoveObservers()
+        public void RemoveObservers(int i)
         {
-            subscribers.Clear();
+            subscribers.RemoveAt(i);
         }
 
         public void NotifyObserversFood(List<Food> Ohapka)
         {
             this.Ohapka = Ohapka;
-            foreach (LiveInAqua fish in subscribers)
-                fish.GoEat(Ohapka);
+            for (int i = 0; i < subscribers.Count(); i++)
+            {
+                subscribers.ElementAt(i).GoEat(Ohapka);
+                if(subscribers.ElementAt(i).health >= 51)
+                    RemoveObservers(i);
+            }
         }
 
     }

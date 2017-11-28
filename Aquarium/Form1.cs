@@ -50,6 +50,7 @@ namespace Aquarium2
                 if (!fishFlag && foodFlag)
                 {
                     world.CreateFood(x, y);
+                    world.FoodExist();
                 }
                 if (fishFlag)
                 {
@@ -86,6 +87,11 @@ namespace Aquarium2
             }
             if (snailCount == 1)
                 timer2.Enabled = true;
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.Text = e.Location.ToString();
         }
 
         private void включитьАквариумToolStripMenuItem_Click(object sender, EventArgs e)

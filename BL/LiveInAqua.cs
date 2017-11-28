@@ -30,7 +30,7 @@ namespace BL
             set { height = value; }
         }
 
-        public int health = 100;
+        public int health = 50;
         public Rectangle lifeRec;
         public bool turn = false;
         protected Graphics g;
@@ -58,9 +58,8 @@ namespace BL
 
         public virtual void SetPoint()
         {
-            
             TrgX = rnd.Next(80, 1450);
-            TrgY = rnd.Next(40, 580);
+            TrgY = rnd.Next(40, 650);
         }
 
         public virtual void Die()
@@ -88,8 +87,17 @@ namespace BL
                         indexJ = j;
                     }
                 }
-            TrgX = Ohapka.ElementAt(indexI).Korm.ElementAt(indexJ).x;
-            TrgY = Ohapka.ElementAt(indexI).Korm.ElementAt(indexJ).y;
+            if (min <= 20)   // ПОЧЕМУ РЫБЫ НЕ ЕДЯТ СУКИ!?!?
+            {
+                Ohapka.ElementAt(indexI).Korm.RemoveAt(indexJ);
+                health += 45;
+                return;
+            }
+            if (indexJ > -1 && indexI > -1)
+            {
+                TrgX = Ohapka.ElementAt(indexI).Korm.ElementAt(indexJ).x;
+                TrgY = Ohapka.ElementAt(indexI).Korm.ElementAt(indexJ).y;
+            }
         }
     }
 }

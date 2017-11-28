@@ -83,14 +83,14 @@
             this.рыбуToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("рыбуToolStripMenuItem.Image")));
             this.рыбуToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.рыбуToolStripMenuItem.Name = "рыбуToolStripMenuItem";
-            this.рыбуToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
+            this.рыбуToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.рыбуToolStripMenuItem.Text = "Рыбу";
             this.рыбуToolStripMenuItem.Click += new System.EventHandler(this.рыбуToolStripMenuItem_Click);
             // 
             // улиткуToolStripMenuItem
             // 
             this.улиткуToolStripMenuItem.Name = "улиткуToolStripMenuItem";
-            this.улиткуToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
+            this.улиткуToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.улиткуToolStripMenuItem.Text = "Улитку";
             this.улиткуToolStripMenuItem.Click += new System.EventHandler(this.улиткуToolStripMenuItem_Click);
             // 
@@ -101,7 +101,7 @@
             // 
             // timer2
             // 
-            this.timer2.Interval = 50;
+            this.timer2.Interval = 150;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
@@ -112,11 +112,12 @@
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Click += new System.EventHandler(this.Form1_Click);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

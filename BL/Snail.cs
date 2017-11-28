@@ -19,17 +19,21 @@ namespace BL
             Height = 95;
             this.g = g;
             TrgX = rnd.Next(80, 1400);
-            lifeRec = new Rectangle(x, y + 50, Width, 5);
+            TrgY = rnd.Next(630, 950);
+            lifeRec = new Rectangle(x, y + 50, Width, 10);
 
         }
 
         public override void Move()
         {
             int dx = TrgX - x;
-            int stepX = 2;
+            int dy = TrgY - y;
+            int stepX = 5;
+            int stepY = 3;
+
             if (Math.Abs(dx) > 3)
             {
-                if (dx < 0)              // улитка правее точки
+                if (dx < 0)              // рыбка правее точки
                     x -= stepX;
                 else
                 {
@@ -37,8 +41,27 @@ namespace BL
                     turn = true;
                 }
             }
-            lifeRec.X = X;
 
+            if (Math.Abs(dy) > 1)
+            {
+                if (dy < 0)                // рыбка ниже точки
+                    y -= stepY;
+                else
+                    y += stepY;
+            }
+            lifeRec.X = X;
+            lifeRec.Y = Y + 100;
+        }
+
+        public override void SetPoint()
+        {
+            TrgX = rnd.Next(80, 1450);
+            TrgY = rnd.Next(630, 950);
+        }
+
+        public override void Die()
+        {
+            Death = true;
         }
 
     }
