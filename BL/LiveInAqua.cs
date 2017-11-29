@@ -30,7 +30,7 @@ namespace BL
             set { height = value; }
         }
 
-        public int health = 50;
+        public int health = 100;
         public Rectangle lifeRec;
         public bool turn = false;
         protected Graphics g;

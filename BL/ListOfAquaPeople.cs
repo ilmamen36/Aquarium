@@ -66,8 +66,7 @@ namespace BL
         }
 
 
-
-
+        //перенести в аквариум, создать интерфейс подписчиков, подписывать всех рыб сразу на событие. выполнять для них действие, когда здоровье <51
         List<LiveInAqua> subscribers = new List<LiveInAqua>();
 
         public List<LiveInAqua> GetSubscribers()
