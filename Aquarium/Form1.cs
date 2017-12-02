@@ -116,8 +116,13 @@ namespace Aquarium2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            world.AllFish.Move();
-            world.FallFood();
+            if (world.something.Korm.Count() !=0)
+            {
+                world.FoodExist();
+                world.FallFood();
+                world.RemoveFood();
+            }
+            world.AllFish.Move();            
             BackgroundImage = draw.DrawAll(world);
         }
     }

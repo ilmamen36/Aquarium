@@ -6,32 +6,73 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public class Aquarium// : ISubject 
+    public class Aquarium 
     {
         public ListOfAquaPeople AllFish { get; private set; } = new ListOfAquaPeople();
-        public List<Food> Ohapka { get; private set; } = new List<Food>();
+        public Objects something = new Objects();
+        private List<LiveInAqua> subscribers = new List<LiveInAqua>();
+        private Random rnd = new Random();
 
         public void Add(LiveInAqua obj)
         {
             AllFish.Add(obj);
         }
 
-        public void CreateFood(int x, int y)
+        public void CreateFood(int x, int y)// е*учий корм создаётся по одной штучке. Исправить!
         {
-            Ohapka.Add(new Food(x, y));
+            for (int i = 0; i < rnd.Next(1, 5); i++)
+                something.Korm.Add(new Objects.Food(x, y));             
         }
 
         public void FallFood()
         {
-            foreach (Food foo in Ohapka)
-                foreach (Food.Kroshka kr in foo.Korm)
-                    kr.Sink();
+            foreach (Objects.Food foo in something.Korm)
+                foo.Sink();
+        }
+
+        public void RemoveFood()
+        {
+            for (int i = 0; i < something.Korm.Count(); i++)
+            {
+                if (something.Korm[i].Y >= 650)
+                {
+                    something.Korm.RemoveAt(i);
+                }
+            }
         }
 
         public void FoodExist()
         {
-                AllFish.IsHungry();
-                AllFish.NotifyObserversFood(Ohapka);
+                IsHungry();
+                NotifyObserversFood();
+        }
+
+        public List<LiveInAqua> GetSubscribers()
+        {
+            return subscribers;
+        }
+
+        public void IsHungry()
+        {
+            foreach (LiveInAqua fish in AllFish.residents)
+            {
+                if ((fish is FishAdult || fish is FishChild) && fish.health < 51)
+                    subscribers.Add(fish);
+            }
+        }
+
+        public void RemoveObservers()
+        {
+            subscribers = new List<LiveInAqua>(); 
+        }
+
+        public void NotifyObserversFood()
+        {
+            for (int i = 0; i < subscribers.Count(); i++)
+            {
+                subscribers.ElementAt(i).GoEat(something);                
+            }
+            RemoveObservers();
         }
     }
 }

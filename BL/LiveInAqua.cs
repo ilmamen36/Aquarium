@@ -30,7 +30,7 @@ namespace BL
             set { height = value; }
         }
 
-        public int health = 100;
+        public int health = 55;
         public Rectangle lifeRec;
         public bool turn = false;
         protected Graphics g;
@@ -70,33 +70,32 @@ namespace BL
                 Death = true;
         }
 
-        public virtual void GoEat(List<Food> Ohapka)
+        public virtual void GoEat(Objects something)
         {
+            List<Objects.Food> Korm = something.Korm;
             double min = 5000;
-            int indexI = -1, indexJ = -1;
+            int indexI = -1;
             double distance;
-            for (int i =0; i < Ohapka.Count(); i++)
-                for (int j = 0; j < Ohapka.ElementAt(i).Korm.Count(); j++)
-                {
-                    distance = Math.Sqrt((X - Ohapka.ElementAt(i).Korm.ElementAt(j).x) * (X - Ohapka.ElementAt(i).Korm.ElementAt(j).x)
-                        + (Y - Ohapka.ElementAt(i).Korm.ElementAt(j).y) * (Y - Ohapka.ElementAt(i).Korm.ElementAt(j).y));
-                    if (distance < min)
-                    {
-                        min = distance;
-                        indexI = i;
-                        indexJ = j;
-                    }
-                }
-            if (min <= 20)   // ПОЧЕМУ РЫБЫ НЕ ЕДЯТ СУКИ!?!?
+            for (int i = 0; i < Korm.Count(); i++)
             {
-                Ohapka.ElementAt(indexI).Korm.RemoveAt(indexJ);
+                distance = Math.Sqrt((X - Korm.ElementAt(i).X) * (X - Korm.ElementAt(i).X)
+                    + (Y - Korm.ElementAt(i).Y) * (Y - Korm.ElementAt(i).Y));
+                if (distance < min)
+                {
+                    min = distance;
+                    indexI = i;
+                }
+            }
+            if (min <= 20)   
+            {
+                Korm.RemoveAt(indexI);
                 health += 45;
                 return;
             }
-            if (indexJ > -1 && indexI > -1)
+            if (indexI > -1)
             {
-                TrgX = Ohapka.ElementAt(indexI).Korm.ElementAt(indexJ).x;
-                TrgY = Ohapka.ElementAt(indexI).Korm.ElementAt(indexJ).y;
+                TrgX = Korm.ElementAt(indexI).X;
+                TrgY = Korm.ElementAt(indexI).Y;
             }
         }
     }

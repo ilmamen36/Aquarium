@@ -41,8 +41,8 @@ namespace BL
             bmp = new Bitmap(back);
             g = Graphics.FromImage(bmp);
             DrawMove(sea.AllFish);
-            if (sea.Ohapka.Count != 0)
-                DrawFood(sea.Ohapka);
+            if (sea.something.Korm.Count != 0)
+                DrawFood(sea.something.Korm);
             return bmp;
         }
 
@@ -139,11 +139,11 @@ namespace BL
             }
         }
 
-        public void DrawFood(List<Food> eda)
+        public void DrawFood(List<Objects.Food> eda)
         {
-            foreach (Food food in eda)
-                foreach (Food.Kroshka kpoxa in food.Korm)
-                    g.DrawImage(Image.FromFile("kroshka.png"), kpoxa.x, kpoxa.y, 12, 12);
+            //foreach (Objects.Food food in eda)
+            for (int i = 0; i < eda.Count(); i++)
+                g.DrawImage(Image.FromFile("kroshka.png"), eda[i].X, eda[i].Y, 12, 12);
         }
     }
 }

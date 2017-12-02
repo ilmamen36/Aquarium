@@ -10,7 +10,7 @@ namespace BL
     public class ListOfAquaPeople : LiveInAqua
     {
         public List<LiveInAqua> residents;
-        private List<Food> Ohapka;
+        //private List<Food> Ohapka;
         Drawing draw = new Drawing();
         Image mainBmp = Image.FromFile("background.png");
 
@@ -40,7 +40,7 @@ namespace BL
                         {
                             residents.ElementAt(i).SetPoint();
                         }
-                        NotifyObserversFood(Ohapka);
+
                         residents.ElementAt(i).Move();
                     }
 
@@ -50,7 +50,7 @@ namespace BL
 
         private bool PointNewOrNo(int x, int y, int targetX, int targetY)
         {
-            if (Math.Abs(targetX - x) < 6 || Math.Abs(targetY - y) < 3)
+            if (Math.Abs(targetX - x) < 6 && Math.Abs(targetY - y) < 3)
                 return true;
             else
                 return false;
@@ -67,37 +67,37 @@ namespace BL
 
 
         //перенести в аквариум, создать интерфейс подписчиков, подписывать всех рыб сразу на событие. выполнять для них действие, когда здоровье <51
-        List<LiveInAqua> subscribers = new List<LiveInAqua>();
+        //List<LiveInAqua> subscribers = new List<LiveInAqua>();
 
-        public List<LiveInAqua> GetSubscribers()
-        {
-            return subscribers;
-        }
+        //public List<LiveInAqua> GetSubscribers()
+        //{
+        //    return subscribers;
+        //}
 
-        public void IsHungry()
-        {
-            foreach (LiveInAqua fish in residents)
-            {
-                if ((fish is FishAdult || fish is FishChild) && fish.health < 51)
-                    subscribers.Add(fish);
-            }
-        }
+        //public void IsHungry()
+        //{
+        //    foreach (LiveInAqua fish in residents)
+        //    {
+        //        if ((fish is FishAdult || fish is FishChild) && fish.health < 51)
+        //            subscribers.Add(fish);
+        //    }
+        //}
 
-        public void RemoveObservers(int i)
-        {
-            subscribers.RemoveAt(i);
-        }
+        //public void RemoveObservers(int i)
+        //{
+        //    subscribers.RemoveAt(i);
+        //}
 
-        public void NotifyObserversFood(List<Food> Ohapka)
-        {
-            this.Ohapka = Ohapka;
-            for (int i = 0; i < subscribers.Count(); i++)
-            {
-                subscribers.ElementAt(i).GoEat(Ohapka);
-                if(subscribers.ElementAt(i).health >= 51)
-                    RemoveObservers(i);
-            }
-        }
+        //public void NotifyObserversFood(List<Food> Ohapka)
+        //{
+        //    this.Ohapka = Ohapka;
+        //    for (int i = 0; i < subscribers.Count(); i++)
+        //    {
+        //        subscribers.ElementAt(i).GoEat(Ohapka);
+        //        if(subscribers.ElementAt(i).health >= 51)
+        //            RemoveObservers(i);
+        //    }
+        //}
 
     }
 }
