@@ -38,6 +38,7 @@
             this.улиткуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.светВклвыклToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +58,8 @@
             // 
             this.действияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.включитьАквариумToolStripMenuItem,
-            this.добавитьРыбуToolStripMenuItem});
+            this.добавитьРыбуToolStripMenuItem,
+            this.светВклвыклToolStripMenuItem});
             this.действияToolStripMenuItem.Name = "действияToolStripMenuItem";
             this.действияToolStripMenuItem.Size = new System.Drawing.Size(86, 24);
             this.действияToolStripMenuItem.Text = "Действия";
@@ -105,6 +107,13 @@
             this.timer2.Interval = 150;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // светВклвыклToolStripMenuItem
+            // 
+            this.светВклвыклToolStripMenuItem.Name = "светВклвыклToolStripMenuItem";
+            this.светВклвыклToolStripMenuItem.Size = new System.Drawing.Size(222, 26);
+            this.светВклвыклToolStripMenuItem.Text = "Свет вкл/выкл";
+            this.светВклвыклToolStripMenuItem.Click += new System.EventHandler(this.светВклвыклToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -136,6 +145,7 @@
         private System.Windows.Forms.ToolStripMenuItem включитьАквариумToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.ToolStripMenuItem светВклвыклToolStripMenuItem;
     }
 }
 

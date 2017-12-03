@@ -94,6 +94,23 @@ namespace Aquarium2
             this.Text = e.Location.ToString();
         }
 
+        private void светВклвыклToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bmp = new Bitmap(Width, Height);
+            g = Graphics.FromImage(bmp);
+
+            if (draw.Light)
+            {
+                g.DrawImage(Image.FromFile("background.png"), 0, 0);
+
+            }
+
+            else
+                g.DrawImage(Image.FromFile("background2.png"), 0, 0);
+            BackgroundImage = bmp;
+            draw.Light = !draw.Light;
+        }
+
         private void включитьАквариумToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foodFlag = true;

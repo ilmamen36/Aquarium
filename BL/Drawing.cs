@@ -11,11 +11,13 @@ namespace BL
 {
     public class Drawing
     {
+        public bool Light { get; set; } = true; //свет вкл или выкл
         Bitmap bmp = new Bitmap(Image.FromFile("background.png"));
         Graphics g;
         Image leftfish = Image.FromFile("fish.png");
         Image rightfish = Image.FromFile("fish.png");
         Image back = Image.FromFile("background.png");
+        Image back2 = Image.FromFile("background2.png");
         Image leftdie = Image.FromFile("fish.png");
         Image rightdie = Image.FromFile("fish.png");
         Image leftdiesnail = Image.FromFile("snail.png");
@@ -38,7 +40,15 @@ namespace BL
         public Bitmap DrawAll(Aquarium sea)
         {
             bmp.Dispose();
-            bmp = new Bitmap(back);
+            if (Light)
+            {
+                bmp = new Bitmap(back);
+            }
+
+            else
+            {
+                bmp = new Bitmap(back2);
+            }
             g = Graphics.FromImage(bmp);
             DrawMove(sea.AllFish);
             if (sea.something.Korm.Count != 0)
