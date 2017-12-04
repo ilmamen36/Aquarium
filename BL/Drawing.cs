@@ -17,7 +17,7 @@ namespace BL
         Image leftfish = Image.FromFile("fish.png");
         Image rightfish = Image.FromFile("fish.png");
         Image back = Image.FromFile("background.png");
-        Image back2 = Image.FromFile("background2.png");
+        Image back2 = Image.FromFile("background2.png"); // background2
         Image leftdie = Image.FromFile("fish.png");
         Image rightdie = Image.FromFile("fish.png");
         Image leftdiesnail = Image.FromFile("snail.png");

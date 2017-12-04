@@ -11,15 +11,18 @@ using BL;
 
 namespace Aquarium2
 {
-    public partial class Form1 : Form
+    public partial class Aqua : Form
     {
-        public Form1()
+        public Aqua()
         {
             InitializeComponent();
+            //label1.Visible = false;
+            label1.Left = Screen.PrimaryScreen.Bounds.Size.Width - 170;
+            label1.Top = 50; 
         }
         Aquarium world;
         Drawing draw;
-
+        Form2 temperature = new Form2();
         bool fishFlag, foodFlag, snailFlag;
         Graphics g;
         static Bitmap bmp;
@@ -111,6 +114,28 @@ namespace Aquarium2
             draw.Light = !draw.Light;
         }
 
+        
+
+        private void регулировкаТемпературыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //temperature = new Form2();
+            temperature.Show();
+            //float temper = temperature.Temperature;
+            //expl = "Температура : " + temper.ToString() + " °C";
+            temperature.SetTemper(label1);
+            string str;
+            string expl = label1.Text;
+            if (expl.Contains("."))
+            {
+                str = (expl[14].ToString() + expl[15].ToString() + expl[16].ToString() + expl[17].ToString()).ToString();
+            }
+            else
+            {
+                str = (expl[14].ToString() + expl[15].ToString()).ToString();
+            }
+            world.Temperature = float.Parse(str);
+        }
+
         private void включитьАквариумToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foodFlag = true;
@@ -129,6 +154,7 @@ namespace Aquarium2
         private void timer2_Tick(object sender, EventArgs e)
         {
             world.AllFish.SlowDie();
+            world.Temperature = temperature.Temperature;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

@@ -31,7 +31,7 @@ namespace BL
             int stepX = 10;
             int stepY = 5;
 
-            if (Math.Abs(dx) > 3)
+            if (Math.Abs(dx) > stepX)
             {
                 if (dx < 0)              // рыбка правее точки
                     x -= stepX;
@@ -42,7 +42,7 @@ namespace BL
                 }
             }
 
-            if (Math.Abs(dy) > 1)
+            if (Math.Abs(dy) > stepY)
             {
                 if (dy < 0)                // рыбка ниже точки
                     y -= stepY;

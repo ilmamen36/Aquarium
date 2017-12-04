@@ -50,7 +50,7 @@ namespace BL
 
         private bool PointNewOrNo(int x, int y, int targetX, int targetY)
         {
-            if (Math.Abs(targetX - x) < 6 && Math.Abs(targetY - y) < 3)
+            if (Math.Abs(targetX - x) < 11 && Math.Abs(targetY - y) < 6)
                 return true;
             else
                 return false;

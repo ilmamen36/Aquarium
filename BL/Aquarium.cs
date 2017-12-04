@@ -11,6 +11,7 @@ namespace BL
         public ListOfAquaPeople AllFish { get; private set; } = new ListOfAquaPeople();
         public Objects something = new Objects();
         private List<LiveInAqua> subscribers = new List<LiveInAqua>();
+        public float Temperature { get; set; }
         private Random rnd = new Random();
 
         public void Add(LiveInAqua obj)
