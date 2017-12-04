@@ -12,21 +12,42 @@ namespace BL
     public class Drawing
     {
         public bool Light { get; set; } = true; //свет вкл или выкл
+        public bool Christmas = false;
         Bitmap bmp = new Bitmap(Image.FromFile("background.png"));
         Graphics g;
+        Image leftf = Image.FromFile("fishChr.png");
+        Image rightf = Image.FromFile("fishChr.png");
+        Image leftd = Image.FromFile("fishChr.png");
+        Image rightd = Image.FromFile("fishChr.png");
+        Image leftds = Image.FromFile("snailChr.png");
+        Image rightds = Image.FromFile("snailChr.png");
+        Image lefts = Image.FromFile("snailChr.png");
+        Image rights = Image.FromFile("snailChr.png");
+        Image backp = Image.FromFile("backgroundChr.png");
+        Image backp2 = Image.FromFile("background2Chr.png");
+
         Image leftfish = Image.FromFile("fish.png");
         Image rightfish = Image.FromFile("fish.png");
         Image back = Image.FromFile("background.png");
-        Image back2 = Image.FromFile("background2.png"); // background2
+        Image back2 = Image.FromFile("background2.png");
         Image leftdie = Image.FromFile("fish.png");
         Image rightdie = Image.FromFile("fish.png");
         Image leftdiesnail = Image.FromFile("snail.png");
         Image rightdiesnail = Image.FromFile("snail.png");
-        Image leftsnail = Image.FromFile("snail.png"); 
-        Image rightsnail = Image.FromFile("snail.png"); 
+        Image leftsnail = Image.FromFile("snail.png");
+        Image rightsnail = Image.FromFile("snail.png");
 
         public Drawing()
         {
+            rightf.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            rightd.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            rightd.RotateFlip(RotateFlipType.RotateNoneFlipXY);
+            leftd.RotateFlip(RotateFlipType.RotateNoneFlipXY);
+            lefts.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            leftds.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            leftds.RotateFlip(RotateFlipType.RotateNoneFlipXY);
+            rightds.RotateFlip(RotateFlipType.RotateNoneFlipY);
+
             rightfish.RotateFlip(RotateFlipType.RotateNoneFlipX);
             rightdie.RotateFlip(RotateFlipType.RotateNoneFlipX);
             rightdie.RotateFlip(RotateFlipType.RotateNoneFlipXY);
@@ -42,12 +63,18 @@ namespace BL
             bmp.Dispose();
             if (Light)
             {
-                bmp = new Bitmap(back);
+                if (Christmas)
+                    bmp = new Bitmap(backp);
+                else
+                    bmp = new Bitmap(back);
             }
 
             else
             {
-                bmp = new Bitmap(back2);
+                if (Christmas)
+                    bmp = new Bitmap(backp2);
+                else
+                    bmp = new Bitmap(back2);
             }
             g = Graphics.FromImage(bmp);
             DrawMove(sea.AllFish);
@@ -64,9 +91,9 @@ namespace BL
                 {
                     g.DrawImage(Image.FromFile("death.png"), swimmers.residents.ElementAt(i).X, swimmers.residents.ElementAt(i).Y, 150, 150);
                     swimmers.residents.RemoveAt(i);
-                    continue;                    
+                    continue;
                 }
-                if(swimmers.residents.ElementAt(i).Y < 650)
+                if (swimmers.residents.ElementAt(i).Y < 650)
                     DrawFish(swimmers.residents.ElementAt(i));
                 else
                     DrawSnail(swimmers.residents.ElementAt(i));
@@ -80,23 +107,35 @@ namespace BL
             {
                 if (fish.health != 0)
                 {
-                    g.DrawImage(rightfish, fish.X, fish.Y, fish.Width, fish.Height);
+                    if (Christmas)
+                        g.DrawImage(rightf, fish.X, fish.Y, fish.Width, fish.Height);
+                    else
+                        g.DrawImage(rightfish, fish.X, fish.Y, fish.Width, fish.Height);
                     fish.turn = false;
                 }
                 else
                 {
-                    g.DrawImage(rightdie, fish.X, fish.Y, fish.Width, fish.Height);
+                    if (Christmas)
+                        g.DrawImage(rightd, fish.X, fish.Y, fish.Width, fish.Height);
+                    else
+                        g.DrawImage(rightdie, fish.X, fish.Y, fish.Width, fish.Height);
                 }
             }
             else
             {
                 if (fish.health != 0)
                 {
-                    g.DrawImage(leftfish, fish.X, fish.Y, 150, 95);
+                    if (Christmas)
+                        g.DrawImage(leftf, fish.X, fish.Y, 150, 95);
+                    else
+                        g.DrawImage(leftfish, fish.X, fish.Y, 150, 95);
                 }
                 else
                 {
-                    g.DrawImage(leftdie, fish.X, fish.Y, fish.Width, fish.Height);
+                    if (Christmas)
+                        g.DrawImage(leftd, fish.X, fish.Y, fish.Width, fish.Height);
+                    else
+                        g.DrawImage(leftdie, fish.X, fish.Y, fish.Width, fish.Height);
                 }
             }
         }
@@ -107,23 +146,35 @@ namespace BL
             {
                 if (snail.health != 0)
                 {
-                    g.DrawImage(rightsnail, snail.X, snail.Y, snail.Width, snail.Height);
+                    if (Christmas)
+                        g.DrawImage(rights, snail.X, snail.Y, snail.Width, snail.Height);
+                    else
+                        g.DrawImage(rightsnail, snail.X, snail.Y, snail.Width, snail.Height);
                     snail.turn = false;
                 }
                 else
                 {
-                    g.DrawImage(rightdiesnail, snail.X, snail.Y, snail.Width, snail.Height);
+                    if (Christmas)
+                        g.DrawImage(rightds, snail.X, snail.Y, snail.Width, snail.Height);
+                    else
+                        g.DrawImage(rightdiesnail, snail.X, snail.Y, snail.Width, snail.Height);
                 }
             }
             else
             {
                 if (snail.health != 0)
                 {
-                    g.DrawImage(leftsnail, snail.X, snail.Y, 150, 95);
+                    if (Christmas)
+                        g.DrawImage(lefts, snail.X, snail.Y, 150, 95);
+                    else
+                        g.DrawImage(leftsnail, snail.X, snail.Y, 150, 95);
                 }
                 else
                 {
-                    g.DrawImage(leftdiesnail, snail.X, snail.Y, snail.Width, snail.Height);
+                    if (Christmas)
+                        g.DrawImage(leftds, snail.X, snail.Y, snail.Width, snail.Height);
+                    else
+                        g.DrawImage(leftdiesnail, snail.X, snail.Y, snail.Width, snail.Height);
                 }
             }
         }

@@ -136,9 +136,20 @@ namespace Aquarium2
             world.Temperature = float.Parse(str);
         }
 
+        private void сюрпризToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (draw.Light)
+                g.DrawImage(Image.FromFile("backgroundChr.png"), 0, 0);
+            else
+                g.DrawImage(Image.FromFile("background2Chr.png"), 0, 0);
+            BackgroundImage = bmp;
+            draw.Christmas = true;
+        }
+
         private void включитьАквариумToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foodFlag = true;
+            сюрпризToolStripMenuItem.Enabled = true;
             bmp = new Bitmap(Width, Height);
             g = Graphics.FromImage(bmp);
             g.DrawImage(Image.FromFile("background.png"), 0, 0);
