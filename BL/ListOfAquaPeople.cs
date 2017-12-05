@@ -10,7 +10,6 @@ namespace BL
     public class ListOfAquaPeople : LiveInAqua
     {
         public List<LiveInAqua> residents;
-        //private List<Food> Ohapka;
         Drawing draw = new Drawing();
         Image mainBmp = Image.FromFile("background.png");
 
@@ -22,7 +21,7 @@ namespace BL
         public void Add(LiveInAqua p)
         {
             residents.Add(p);
-        }
+        }        
 
         public override void Move()
         {
@@ -64,6 +63,8 @@ namespace BL
                     f.health -= 1;
             }
         }
+    }
+}
 
 
         //перенести в аквариум, создать интерфейс подписчиков, подписывать всех рыб сразу на событие. выполнять для них действие, когда здоровье <51
@@ -99,5 +100,4 @@ namespace BL
         //    }
         //}
 
-    }
-}
+    

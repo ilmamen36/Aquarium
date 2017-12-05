@@ -12,12 +12,14 @@ namespace Aquarium2
 {
     public partial class Form2 : Form
     {
-        public Form2()
+        public Form2(int temp)
         {
             InitializeComponent();
+            trackBar1.Value = temp;
         }
         Label lab;
         public float Temperature { get; set; } = 20;
+        
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {

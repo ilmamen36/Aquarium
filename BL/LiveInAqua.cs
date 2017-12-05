@@ -15,6 +15,8 @@ namespace BL
         protected int height;
         public bool Death { get; protected set; } = false;
 
+        //public double kX { get; set; } = 1;
+        //public double kY { get; set; }= 1;
         public int TrgX { get; protected set; }
         public int TrgY { get; protected set; }
 

@@ -38,10 +38,10 @@
             this.улиткуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.светВклвыклToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.регулировкаТемпературыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сюрпризToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            this.сюрпризToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,19 +111,28 @@
             // 
             // регулировкаТемпературыToolStripMenuItem
             // 
+            this.регулировкаТемпературыToolStripMenuItem.Enabled = false;
             this.регулировкаТемпературыToolStripMenuItem.Name = "регулировкаТемпературыToolStripMenuItem";
             this.регулировкаТемпературыToolStripMenuItem.Size = new System.Drawing.Size(267, 26);
             this.регулировкаТемпературыToolStripMenuItem.Text = "Регулировка температуры";
             this.регулировкаТемпературыToolStripMenuItem.Click += new System.EventHandler(this.регулировкаТемпературыToolStripMenuItem_Click);
             // 
+            // сюрпризToolStripMenuItem
+            // 
+            this.сюрпризToolStripMenuItem.Enabled = false;
+            this.сюрпризToolStripMenuItem.Name = "сюрпризToolStripMenuItem";
+            this.сюрпризToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
+            this.сюрпризToolStripMenuItem.Text = "Сюрприз";
+            this.сюрпризToolStripMenuItem.Click += new System.EventHandler(this.сюрпризToolStripMenuItem_Click);
+            // 
             // timer1
             // 
-            this.timer1.Interval = 15;
+            this.timer1.Interval = 5;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // timer2
             // 
-            this.timer2.Interval = 150;
+            this.timer2.Interval = 200;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // label1
@@ -137,14 +146,6 @@
             this.label1.Size = new System.Drawing.Size(197, 26);
             this.label1.TabIndex = 1;
             this.label1.Text = "Температура : 20 °C";
-            // 
-            // сюрпризToolStripMenuItem
-            // 
-            this.сюрпризToolStripMenuItem.Enabled = false;
-            this.сюрпризToolStripMenuItem.Name = "сюрпризToolStripMenuItem";
-            this.сюрпризToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
-            this.сюрпризToolStripMenuItem.Text = "Сюрприз";
-            this.сюрпризToolStripMenuItem.Click += new System.EventHandler(this.сюрпризToolStripMenuItem_Click);
             // 
             // Aqua
             // 

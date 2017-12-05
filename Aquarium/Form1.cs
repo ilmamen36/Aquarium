@@ -22,8 +22,8 @@ namespace Aquarium2
         }
         Aquarium world;
         Drawing draw;
-        Form2 temperature = new Form2();
-        bool fishFlag, foodFlag, snailFlag;
+        Form2 temperature = new Form2(200);
+        bool fishFlag, foodFlag, snailFlag, Christmas;
         Graphics g;
         static Bitmap bmp;
         int x, y;
@@ -48,7 +48,7 @@ namespace Aquarium2
         {
             x = MousePosition.X;
             y = MousePosition.Y;
-            if (y <= 630)
+            if (y <= 650)
             {
                 if (!fishFlag && foodFlag)
                 {
@@ -83,7 +83,7 @@ namespace Aquarium2
             snailFlag = true;
             snailCount++;
             улиткуToolStripMenuItem.Text = "Улитку " + snailCount.ToString() + "/4";
-            if (snailCount == 3)
+            if (snailCount == 4)
             {
                 улиткуToolStripMenuItem.Text = "Больше нельзя ;(";
                 улиткуToolStripMenuItem.Enabled = false;
@@ -114,15 +114,8 @@ namespace Aquarium2
             draw.Light = !draw.Light;
         }
 
-        
-
-        private void регулировкаТемпературыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Temp()
         {
-            //temperature = new Form2();
-            temperature.Show();
-            //float temper = temperature.Temperature;
-            //expl = "Температура : " + temper.ToString() + " °C";
-            temperature.SetTemper(label1);
             string str;
             string expl = label1.Text;
             if (expl.Contains("."))
@@ -136,19 +129,40 @@ namespace Aquarium2
             world.Temperature = float.Parse(str);
         }
 
+        private void регулировкаТемпературыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            temperature = new Form2((int)(world.Temperature*10));
+            //if (world.Temperature != 0)
+            //    temperature.Temperature = world.Temperature;
+            temperature.Show();
+            //float temper = temperature.Temperature;
+            //expl = "Температура : " + temper.ToString() + " °C";
+            temperature.SetTemper(label1);            
+        }
+
         private void сюрпризToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (draw.Light)
-                g.DrawImage(Image.FromFile("backgroundChr.png"), 0, 0);
+            if (!Christmas)
+            {
+                Christmas = true;
+                if (draw.Light)
+                    g.DrawImage(Image.FromFile("backgroundChr.png"), 0, 0);
+                else
+                    g.DrawImage(Image.FromFile("background2Chr.png"), 0, 0);
+                BackgroundImage = bmp;
+                draw.Christmas = true;
+            }
             else
-                g.DrawImage(Image.FromFile("background2Chr.png"), 0, 0);
-            BackgroundImage = bmp;
-            draw.Christmas = true;
+            {
+                Christmas = false;
+                draw.Christmas = false;
+            }
         }
 
         private void включитьАквариумToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foodFlag = true;
+            регулировкаТемпературыToolStripMenuItem.Enabled = true;
             сюрпризToolStripMenuItem.Enabled = true;
             bmp = new Bitmap(Width, Height);
             g = Graphics.FromImage(bmp);
@@ -159,13 +173,22 @@ namespace Aquarium2
             включитьАквариумToolStripMenuItem.Enabled = false;
             добавитьРыбуToolStripMenuItem.Enabled = true;
             draw = new Drawing();
-
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
+            if (temperature.Temperature >= 21.5)
+            {
+                timer2.Interval = 1000;
+                timer1.Interval = 3;
+            }
+            else
+            {
+                timer2.Interval = 200;
+                timer1.Interval = 15;
+            }
             world.AllFish.SlowDie();
-            world.Temperature = temperature.Temperature;
+            Temp();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
