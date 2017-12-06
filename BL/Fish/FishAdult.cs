@@ -7,9 +7,8 @@ using System.Drawing;
 
 namespace BL
 {
-    public class FishAdult : LiveInAqua, sexSub
+    public class FishAdult : LiveInAqua, IsexSub
     {
-
         public FishAdult(Graphics g, int x, int y)
         {
             creator = new FishAdultCreator();
@@ -53,9 +52,11 @@ namespace BL
             lifeRec.Y = Y + 100;
         }
 
-        public void GoSex()
+        public double GoSex(int x, int y)
         {
-
+            TrgX = x;
+            TrgY = y;
+            return Math.Sqrt((X - TrgX) * (X - TrgX) + (Y - TrgY) * (Y - TrgY));
         }
     }
 }

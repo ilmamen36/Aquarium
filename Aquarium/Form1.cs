@@ -44,7 +44,7 @@ namespace Aquarium2
                 рыбуToolStripMenuItem.Enabled = false;
             }
             if (bigFishCount == 1)
-                timer2.Enabled = true;
+                LifeTemp.Enabled = true;
         }
         private void Form1_Click(object sender, EventArgs e)
         {
@@ -91,7 +91,7 @@ namespace Aquarium2
                 улиткуToolStripMenuItem.Enabled = false;
             }
             if (snailCount == 1)
-                timer2.Enabled = true;
+                LifeTemp.Enabled = true;
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
@@ -130,17 +130,30 @@ namespace Aquarium2
                 str = (expl[14].ToString() + expl[15].ToString()).ToString();
             }
             world.Temperature = float.Parse(str);
+            //if (world.Temperature == 23 && !SexTime.Enabled)
+            //    SexTime.Enabled = true;
         }
 
         private void регулировкаТемпературыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            temperature = new Form2((int)(world.Temperature*10));
+            temperature = new Form2((int)(world.Temperature * 10));
             //if (world.Temperature != 0)
             //    temperature.Temperature = world.Temperature;
             temperature.Show();
             //float temper = temperature.Temperature;
             //expl = "Температура : " + temper.ToString() + " °C";
-            temperature.SetTemper(label1);            
+            temperature.SetTemper(label1);
+        }
+
+        private void SexTime_Tick(object sender, EventArgs e)
+        {
+            world.sexflag = true;
+            SexTime.Enabled = false;
+        }
+
+        private void GrowTime_Tick(object sender, EventArgs e)
+        {
+            world.GrowFish(g);
         }
 
         private void timeForGrowing_Tick(object sender, EventArgs e)
@@ -178,38 +191,46 @@ namespace Aquarium2
             g.DrawImage(Image.FromFile("background.png"), 0, 0);
             BackgroundImage = bmp;
             world = new Aquarium();
-            timer1.Enabled = true;
+            MoveFood.Enabled = true;
             включитьАквариумToolStripMenuItem.Enabled = false;
             добавитьРыбуToolStripMenuItem.Enabled = true;
             draw = new Drawing();
             timeForGrowing.Enabled = true;
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        private void LifeTemp_Tick(object sender, EventArgs e)
         {
             if (world.Temperature >= 21.5)
             {
-                timer2.Interval = 1000;
-                timer1.Interval = 3;
+                LifeTemp.Interval = 1000;
+                MoveFood.Interval = 3;
             }
             else
             {
-                timer2.Interval = 200;
-                timer1.Interval = 15;
+                LifeTemp.Interval = 200;
+                MoveFood.Interval = 15;
             }
             world.AllFish.SlowDie();
-            
+
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void MoveFood_Tick(object sender, EventArgs e)
         {
             world.FoodExist();
-            if (world.something.Korm.Count() !=0)
+            if (world.something.Korm.Count() != 0)
             {
                 world.FallFood();
                 world.RemoveFood();
             }
+            if (world.Temperature == 23 && world.sexflag)
+                world.NormConditions(g);
+            if (world.Temperature == 23 && !world.sexflag)
+            {
+                SexTime.Enabled = true;
+                GrowTime.Enabled = true;
+            }
             world.AllFish.Move();
+
             Temp();
             BackgroundImage = draw.DrawAll(world);
         }

@@ -9,32 +9,47 @@ namespace BL
 {
     public class FishChild : LiveInAqua
     {
-        public FishChild(int x, int y, Graphics g)
+        public FishChild(Graphics g, int x, int y)
         {
             creator = new FishChildCreator();
             creator.Create(g, x, y);
-            X = x;
-            Y = y;
+            X = x - 25;
+            Y = y - 30;
+            Width = 50;
+            Height = 32;
             this.g = g;
+            TrgX = rnd.Next(80, 1450);
+            TrgY = rnd.Next(40, 650);
+            lifeRec = new Rectangle(x, y + Height, Width, 10);
         }
-
 
         public override void Move()
         {
-            if (X < 1450)
-                X += 20;
-            else
+            int dx = TrgX - x;
+            int dy = TrgY - y;
+            int stepX = 6;
+            int stepY = 3;
+
+            if (Math.Abs(dx) > stepX)
             {
-                if (X > 80)
-                    X -= 20;
+                if (dx < 0)              // рыбка правее точки
+                    x -= stepX;
+                else
+                {
+                    x += stepX;
+                    turn = true;
+                }
             }
-            if (Y < 580)
-                Y += 10;
-            else
+
+            if (Math.Abs(dy) > stepY)
             {
-                if (Y > 40)
-                    Y -= 10;
+                if (dy < 0)                // рыбка ниже точки
+                    y -= stepY;
+                else
+                    y += stepY;
             }
+            lifeRec.X = X;
+            lifeRec.Y = Y + 30;
         }
     }
 }

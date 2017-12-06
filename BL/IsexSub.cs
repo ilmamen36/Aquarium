@@ -5,8 +5,8 @@ using System.Text;
 
 namespace BL
 {
-    public interface sexSub
+    public interface IsexSub
     {
-        void GoSex();
+        double GoSex(int TrgX, int TrgY);
     }
 }

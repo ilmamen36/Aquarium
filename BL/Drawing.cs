@@ -130,9 +130,9 @@ namespace BL
                 if (fish.health != 0)
                 {
                     if (Christmas)
-                        g.DrawImage(leftf, fish.X, fish.Y, 150, 95);
+                        g.DrawImage(leftf, fish.X, fish.Y, fish.Width, fish.Height);
                     else
-                        g.DrawImage(leftfish, fish.X, fish.Y, 150, 95);
+                        g.DrawImage(leftfish, fish.X, fish.Y, fish.Width, fish.Height);
                 }
                 else
                 {
@@ -210,13 +210,13 @@ namespace BL
             for (int i = 0; i < eda.Count(); i++)
                 g.DrawImage(food, eda[i].X, eda[i].Y, 12, 12);
         }
-        
+
         public void DrawWaterWood(List<Objects.WaterWood> vodrosblya)
         {
-            foreach(Objects.WaterWood ww in vodrosblya)
+            foreach (Objects.WaterWood ww in vodrosblya)
             {
                 int y = ww.Y;
-                for(int i = 0; i < ww.height.Count; i++)
+                for (int i = 0; i < ww.height.Count; i++)
                 {
                     g.DrawImage(waterwood, ww.X, y, 100, 80);
                     y -= 20;
