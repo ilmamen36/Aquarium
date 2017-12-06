@@ -10,7 +10,7 @@ namespace BL
     public class ListOfAquaPeople : LiveInAqua
     {
         public List<LiveInAqua> residents;
-        Drawing draw = new Drawing();
+        public Drawing draw = new Drawing();
         Image mainBmp = Image.FromFile("background.png");
 
         public ListOfAquaPeople()

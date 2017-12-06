@@ -63,5 +63,34 @@ namespace BL
             Death = true;
         }
 
+        public override void GoEat(Objects something)
+        {
+            List<Objects.WaterWood> Korm = something.Trees;
+            double min = 5000;
+            int indexI = -1;
+            double distance;
+            for (int i = 0; i < Korm.Count(); i++)
+            {
+                distance = Math.Sqrt((X - Korm.ElementAt(i).X) * (X - Korm.ElementAt(i).X)
+                    + (Y - Korm.ElementAt(i).Y) * (Y - Korm.ElementAt(i).Y));
+                if (distance < min)
+                {
+                    min = distance;
+                    indexI = i;
+                }
+            }
+            if (min <= 20)
+            {
+                something.Trees.RemoveAt(indexI);
+                health += 45;
+                return;
+            }
+            if (indexI > -1)
+            {
+                TrgX = Korm.ElementAt(indexI).X;
+                TrgY = Korm.ElementAt(indexI).Y;
+            }
+        }
+
     }
 }

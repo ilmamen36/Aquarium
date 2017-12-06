@@ -16,10 +16,12 @@ namespace Aquarium2
         public Aqua()
         {
             InitializeComponent();
-            //label1.Visible = false;
-            label1.Left = Screen.PrimaryScreen.Bounds.Size.Width - 170;
-            label1.Top = 50; 
+            label1.Visible = false;
+            label1.Left = screenSizeW - 170;
+            label1.Top = 50;
         }
+        static Size resolution = Screen.PrimaryScreen.Bounds.Size;
+        int screenSizeW = resolution.Width;
         Aquarium world;
         Drawing draw;
         Form2 temperature = new Form2(200);
@@ -94,7 +96,7 @@ namespace Aquarium2
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
-            this.Text = e.Location.ToString();
+            Text = e.Location.ToString();
         }
 
         private void светВклвыклToolStripMenuItem_Click(object sender, EventArgs e)
@@ -112,6 +114,7 @@ namespace Aquarium2
                 g.DrawImage(Image.FromFile("background2.png"), 0, 0);
             BackgroundImage = bmp;
             draw.Light = !draw.Light;
+            world.SetLight(draw.Light);
         }
 
         private void Temp()
@@ -140,6 +143,11 @@ namespace Aquarium2
             temperature.SetTemper(label1);            
         }
 
+        private void timeForGrowing_Tick(object sender, EventArgs e)
+        {
+            world.GrowWaterWood();
+        }
+
         private void сюрпризToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!Christmas)
@@ -161,6 +169,7 @@ namespace Aquarium2
 
         private void включитьАквариумToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            label1.Visible = true;
             foodFlag = true;
             регулировкаТемпературыToolStripMenuItem.Enabled = true;
             сюрпризToolStripMenuItem.Enabled = true;
@@ -173,11 +182,12 @@ namespace Aquarium2
             включитьАквариумToolStripMenuItem.Enabled = false;
             добавитьРыбуToolStripMenuItem.Enabled = true;
             draw = new Drawing();
+            timeForGrowing.Enabled = true;
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            if (temperature.Temperature >= 21.5)
+            if (world.Temperature >= 21.5)
             {
                 timer2.Interval = 1000;
                 timer1.Interval = 3;
@@ -188,18 +198,19 @@ namespace Aquarium2
                 timer1.Interval = 15;
             }
             world.AllFish.SlowDie();
-            Temp();
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            world.FoodExist();
             if (world.something.Korm.Count() !=0)
             {
-                world.FoodExist();
                 world.FallFood();
                 world.RemoveFood();
             }
-            world.AllFish.Move();            
+            world.AllFish.Move();
+            Temp();
             BackgroundImage = draw.DrawAll(world);
         }
     }

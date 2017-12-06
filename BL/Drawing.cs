@@ -37,6 +37,9 @@ namespace BL
         Image leftsnail = Image.FromFile("snail.png");
         Image rightsnail = Image.FromFile("snail.png");
 
+        Image food = Image.FromFile("kroshka.png");
+        Image waterwood = Image.FromFile("waterwood.png");
+
         public Drawing()
         {
             rightf.RotateFlip(RotateFlipType.RotateNoneFlipX);
@@ -77,6 +80,7 @@ namespace BL
                     bmp = new Bitmap(back2);
             }
             g = Graphics.FromImage(bmp);
+            DrawWaterWood(sea.something.Trees);
             DrawMove(sea.AllFish);
             if (sea.something.Korm.Count != 0)
                 DrawFood(sea.something.Korm);
@@ -204,7 +208,20 @@ namespace BL
         {
             //foreach (Objects.Food food in eda)
             for (int i = 0; i < eda.Count(); i++)
-                g.DrawImage(Image.FromFile("kroshka.png"), eda[i].X, eda[i].Y, 12, 12);
+                g.DrawImage(food, eda[i].X, eda[i].Y, 12, 12);
+        }
+        
+        public void DrawWaterWood(List<Objects.WaterWood> vodrosblya)
+        {
+            foreach(Objects.WaterWood ww in vodrosblya)
+            {
+                int y = ww.Y;
+                for(int i = 0; i < ww.height.Count; i++)
+                {
+                    g.DrawImage(waterwood, ww.X, y, 100, 80);
+                    y -= 20;
+                }
+            }
         }
     }
 }

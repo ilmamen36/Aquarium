@@ -52,7 +52,6 @@
     <Compile Include="Creators\FishChildCreator.cs" />
     <Compile Include="ListOfAquaPeople.cs" />
     <Compile Include="LiveInAqua.cs" />
-    <Compile Include="Food.cs" />
     <Compile Include="Objects.cs" />
     <Compile Include="Observer\ISubject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
